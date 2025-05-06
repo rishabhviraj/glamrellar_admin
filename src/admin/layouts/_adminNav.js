@@ -1,18 +1,12 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
 import {
-  cilBell,
-  cilCalculator,
-  cilCursor,
-  cilDescription,
-  cilDrop,
-  cilExternalLink,
-  cilNotes,
-  cilPencil,
-  cilSpeedometer, cilCart, cilList, cilUser, cilTruck, cilCreditCard, cilStar, cilChartPie, cilSettings, cilPuzzle
+  cilSpeedometer, cilCart, cilList, cilUser, cilTruck, cilCreditCard,
+  cilStar, cilChartPie, cilSettings, cilPuzzle
 } from '@coreui/icons'
-import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
-const _nav = [
+import { CNavGroup, CNavItem } from '@coreui/react'
+
+const _adminNav = [
   {
     component: CNavItem,
     name: 'Dashboard',
@@ -20,176 +14,173 @@ const _nav = [
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
   },
   {
-    component: CNavTitle,
+    component: CNavGroup,
     name: 'Catalog Management',
-  },
-  {
-    component: CNavItem,
-    name: 'Products',
-    to: '/catalog/products',
     icon: <CIcon icon={cilCart} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Products',
+        to: '/catalog/products',
+      },
+      {
+        component: CNavItem,
+        name: 'Categories',
+        to: '/catalog/categories',
+      },
+      {
+        component: CNavItem,
+        name: 'Brands',
+        to: '/catalog/brands',
+      },
+      {
+        component: CNavItem,
+        name: 'Attributes',
+        to: '/catalog/attributes',
+      },
+      {
+        component: CNavItem,
+        name: 'Variants',
+        to: '/catalog/variants',
+      },
+    ],
   },
   {
-    component: CNavItem,
-    name: 'Add New Product',
-    to: '/catalog/AddNewProduct',
-    icon: <CIcon icon={cilCart} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Categories',
-    to: '/catalog/categories',
-    icon: <CIcon icon={cilList} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Brands',
-    to: '/catalog/Brands',
-    icon: <CIcon icon={cilCart} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Attributes',
-    to: '/catalog/attributes',
-    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavTitle,
+    component: CNavGroup,
     name: 'Order Management',
-  },
-  {
-    component: CNavItem,
-    name: 'All Orders',
-    to: '/orders/all',
     icon: <CIcon icon={cilCart} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Orders',
+        to: '/orders/orders',
+      },
+      {
+        component: CNavItem,
+        name: 'Returns Orders',
+        to: '/orders/returnsorders',
+      },
+    ],
   },
   {
-    component: CNavItem,
-    name: 'Pending Orders',
-    to: '/orders/returns',
-    icon: <CIcon icon={cilCart} customClassName="nav-icon" />,
-  },
-
-  {
-    component: CNavItem,
-    name: 'Completed Orders',
-    to: '/orders/all',
-    icon: <CIcon icon={cilCart} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Cancelled Orders',
-    to: '/orders/returns',
-    icon: <CIcon icon={cilCart} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Returns & Refunds',
-    to: '/orders/returns',
-    icon: <CIcon icon={cilCart} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavTitle,
+    component: CNavGroup,
     name: 'Customer Management',
-  },
-  {
-    component: CNavItem,
-    name: 'Customers',
-    to: '/customers/list',
     icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Customers',
+        to: '/customers/customers',
+      },
+      {
+        component: CNavItem,
+        name: 'Vendors',
+        to: '/customers/vendors',
+      },
+    ],
   },
   {
-    component: CNavTitle,
+    component: CNavGroup,
     name: 'Shipping Management',
-  },
-  {
-    component: CNavItem,
-    name: 'Shipping Methods',
-    to: '/shipping/methods',
     icon: <CIcon icon={cilTruck} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Shipping Methods',
+        to: '/shipping/methods',
+      },
+      {
+        component: CNavItem,
+        name: 'Tracking',
+        to: '/shipping/tracking',
+      },
+    ],
   },
   {
-    component: CNavItem,
-    name: 'Tracking',
-    to: '/shipping/tracking',
-    icon: <CIcon icon={cilTruck} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavTitle,
+    component: CNavGroup,
     name: 'Payment Management',
-  },
-  {
-    component: CNavItem,
-    name: 'Payment Methods',
-    to: '/payments/methods',
     icon: <CIcon icon={cilCreditCard} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Payment Methods',
+        to: '/payments/methods',
+      },
+      {
+        component: CNavItem,
+        name: 'Transaction History',
+        to: '/payments/transactions',
+      },
+    ],
   },
   {
-    component: CNavItem,
-    name: 'Transaction History',
-    to: '/payments/transactions',
-    icon: <CIcon icon={cilCreditCard} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavTitle,
+    component: CNavGroup,
     name: 'Reviews & Feedback',
-  },
-  {
-    component: CNavItem,
-    name: 'Product Reviews',
-    to: '/reviews',
     icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Product Reviews',
+        to: '/reviews',
+      },
+      {
+        component: CNavItem,
+        name: 'Customer Feedback',
+        to: '/cms/feedback',
+      },
+    ],
   },
   {
-    component: CNavItem,
-    name: 'Customer Feedback',
-    to: '/cms/feedback',
-    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavTitle,
+    component: CNavGroup,
     name: 'Reports & Analytics',
+    icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Sales Report',
+        to: '/reports/sales',
+      },
+      {
+        component: CNavItem,
+        name: 'Customer Report',
+        to: '/reports/customers',
+      },
+      {
+        component: CNavItem,
+        name: 'Refund Report',
+        to: '/reports/refund',
+      },
+    ],
   },
   {
-    component: CNavItem,
-    name: 'Sales Report',
-    to: '/reports/sales',
-    icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Customer Report',
-    to: '/reports/customers',
-    icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
-  },{
-    component: CNavItem,
-    name: 'Refund Report',
-    to: '/reports/refund',
-    icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavTitle,
+    component: CNavGroup,
     name: 'Settings',
-  },
-  {
-    component: CNavItem,
-    name: 'General Settings',
-    to: '/settings/general',
     icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Currency Settings',
-    to: '/settings/currency',
-    icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'User Roles',
-    to: '/settings/users',
-    icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'General Settings',
+        to: '/settings/general',
+      },
+      {
+        component: CNavItem,
+        name: 'Website Settings',
+        to: '/settings/websiteSettings',
+      },
+      {
+        component: CNavItem,
+        name: 'Currency Settings',
+        to: '/settings/currency',
+      },
+      {
+        component: CNavItem,
+        name: 'User Roles',
+        to: '/settings/users',
+      },
+    ],
   },
 ]
+
 
 // const _nav = [
 //   {
@@ -623,4 +614,4 @@ const _nav = [
 //   },
 // ]
 
-export default _nav
+export default _adminNav

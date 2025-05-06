@@ -17,7 +17,7 @@ import { logo } from '../assets/brand/logo'
 import { sygnet } from '../assets/brand/sygnet'
 
 // sidebar nav config
-import navigation from '../_nav'
+import navigation from '../../admin/layouts/_adminNav'
 
 const AppSidebar = () => {
   const dispatch = useDispatch()

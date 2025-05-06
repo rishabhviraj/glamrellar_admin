@@ -20,6 +20,8 @@ import {
   cilTask,
   cilUser,
   cilAccountLogout,
+  cilKey,
+  cilNotes,
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import { useNavigate } from 'react-router-dom'
@@ -31,7 +33,7 @@ const AppHeaderDropdown = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn') // clear login token
-    navigate('/login') // redirect to login
+    navigate('/') // redirect to login
   }
 
   return (
@@ -45,7 +47,10 @@ const AppHeaderDropdown = () => {
           <CIcon icon={cilUser} className="me-2" />
           Profile
         </CDropdownItem>
-
+        <CDropdownItem href="#">
+          <CIcon icon={cilLockLocked} className="me-2" />
+          Change Password
+        </CDropdownItem>
         <CDropdownHeader className="bg-body-secondary fw-semibold my-2">Settings</CDropdownHeader>
 
         <CDropdownItem onClick={handleLogout}>

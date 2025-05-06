@@ -25,7 +25,7 @@ const Login = () => {
     // Dummy login check (you can replace with real API call)
     if (username === 'admin' && password === 'admin') {
       localStorage.setItem('isLoggedIn', 'true')
-      navigate('/dashboard')
+      navigate('/admin/views/dashboard')
     } else {
       alert('Invalid credentials')
     }

@@ -27,7 +27,7 @@ import {
 
 import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
-
+import routes from '../routes/adminRoutes';
 const AppHeader = () => {
   const headerRef = useRef()
   const { colorMode, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
@@ -132,7 +132,7 @@ const AppHeader = () => {
         </CHeaderNav>
       </CContainer>
       <CContainer className="px-4" fluid>
-        <AppBreadcrumb />
+        <AppBreadcrumb routes={routes} />
       </CContainer>
     </CHeader>
   )

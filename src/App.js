@@ -2,17 +2,18 @@ import React, { Suspense, useEffect } from 'react'
 import { HashRouter, Route, Routes, Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { CSpinner, useColorModes } from '@coreui/react'
-import './scss/style.scss'
-import './scss/examples.scss'
+import './admin/scss/style.scss'
+import './admin/scss/examples.scss'
 
 // Containers
-const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
+const StoreLayout = React.lazy(() => import('../src/storefront/layouts/StoreLayout'))
+const AdminLayout = React.lazy(() => import('../src/admin/layouts/AdminLayout'))
 
 // Pages
-const Login = React.lazy(() => import('./views/pages/login/Login'))
-const Register = React.lazy(() => import('./views/pages/register/Register'))
-const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
-const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
+const Login = React.lazy(() => import('./admin/views/pages/login/Login'))
+const Register = React.lazy(() => import('./admin/views/pages/register/Register'))
+const Page404 = React.lazy(() => import('./admin/views/pages/page404/Page404'))
+const Page500 = React.lazy(() => import('./admin/views/pages/page500/Page500'))
 
 // Private Route Protection
 const PrivateRoute = ({ children }) => {
@@ -45,20 +46,27 @@ const App = () => {
         }
       >
         <Routes>
+          {/* Public Storefront */}
+          <Route path="/" element={<StoreLayout />} />
+
+          {/* Public Pages */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/404" element={<Page404 />} />
           <Route path="/500" element={<Page500 />} />
 
-          {/* All protected routes inside DefaultLayout */}
+          {/* Admin Dashboard (Protected) */}
           <Route
-            path="*"
+            path="/admin/*"
             element={
               <PrivateRoute>
-                <DefaultLayout />
+                <AdminLayout />
               </PrivateRoute>
             }
           />
+
+          {/* Fallback 404 */}
+          <Route path="*" element={<Navigate to="/404" />} />
         </Routes>
       </Suspense>
     </HashRouter>
